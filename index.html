@@ -16,20 +16,24 @@
 
     <body>
         <div id="root">
-            <div class="container col-6">
-                <img src="" alt="">
-                <h2></h2>
+            <div class="container col-6 text-center my-3">
+                <img src="img/logo.svg" alt="logo di Boolean">
+                <h2 class="my-3">Lista delle cose da fare</h2>
                 <div class="input-group flex-nowrap mb-3">
-                    <input type="text" class="form-control" placeholder="Cerca..." aria-label="Username" aria-describedby="addon-wrapping">
+                    <input type="search" class="form-control" placeholder="Cerca..." aria-label="Username" aria-describedby="addon-wrapping">
                     <span class="input-group-text" id="addon-wrapping" v-on:click>
                         <i class="fas fa-search"></i>
                     </span>
                 </div>
                 
                 <ul class="list-group">
-                    <li v-for="task in tasks" class="list-group-item d-flex justify-content-between">
-                        <input class="form-check-input mt-0" v-on:click="" type="checkbox" v-model>
-                        <span v:bind:class="isTaskDone()">{{task.text}}</span>
+                    <li v-for="task in tasks" v-bind:key="task.id" class="list-group-item d-flex justify-content-between">
+                        <div class="form-check">
+                            <label class="form-check-label" role="button" v-bind:class="{'text-decoration-line-through': task.done}">
+                                <input class="form-check-input" type="checkbox" v-model="task.done">
+                                {{task.text}}
+                            </label>
+                        </div>
                         <button type="button" class="btn-close" aria-label="Close" v-on:click="deleteTask(task.id)"></button>
                     </li>
                     <li v-show="!tasks.length" class="text-center list-group-item">
@@ -38,8 +42,8 @@
                     <li class="list-group-item d-flex justify-content-between">
                         <div class="container-fluid">
                             <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Aggiungi..."v-model>
-                            <button class="btn btn-outline-success" type="button" v-on:click>
+                            <input class="form-control me-2" type="text" placeholder="Aggiungi..." v-model.trim="newTaskText" @keyup.enter="addNewTask">
+                            <button class="btn btn-outline-success" type="button" v-on:click="addNewTask">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                             </form>
