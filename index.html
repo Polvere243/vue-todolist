@@ -21,22 +21,22 @@
                 <h2></h2>
                 <div class="input-group flex-nowrap mb-3">
                     <input type="text" class="form-control" placeholder="Cerca..." aria-label="Username" aria-describedby="addon-wrapping">
-                    <span class="input-group-text" id="addon-wrapping">
+                    <span class="input-group-text" id="addon-wrapping" v-on:click>
                         <i class="fas fa-search"></i>
                     </span>
                 </div>
                 
                 <ul class="list-group">
                     <li v-for="task in tasks" class="list-group-item d-flex justify-content-between">
-                        <input class="form-check-input mt-0" type="checkbox" v-model>
-                        <span>{{task.text}}</span>
-                        <button type="button" class="btn-close" aria-label="Close"></button>
+                        <input class="form-check-input mt-0" v-on:click="" type="checkbox" v-model>
+                        <span v:bind:class="{}">{{task.text}}</span>
+                        <button type="button" class="btn-close" aria-label="Close" v-on:click="deleteTask(task.id)"></button>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <div class="container-fluid">
                             <form class="d-flex" role="search">
                             <input class="form-control me-2" type="search" placeholder="Aggiungi..."v-model>
-                            <button class="btn btn-outline-success" type="button">
+                            <button class="btn btn-outline-success" type="button" v-on:click>
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                             </form>
@@ -44,9 +44,9 @@
                     </li>
                 </ul>
                 <div class="btn-group mt-3 d-flex justify-content-between" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-success">Tutti fatti</button>
-                <button type="button" class="btn btn-primary">Tutti da fare</button>
-                <button type="button" class="btn btn-danger">Svuota tutto</button>
+                <button type="button" class="btn btn-success" v-on:click>Tutti fatti</button>
+                <button type="button" class="btn btn-primary" v-on:click>Tutti da fare</button>
+                <button type="button" class="btn btn-danger" v-on:click>Svuota tutto</button>
                 </div>
             </div>
         </div>
