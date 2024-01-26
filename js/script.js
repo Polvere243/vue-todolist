@@ -11,7 +11,7 @@ const app = createApp ({
         ]
     }),
     computed: {
-        isTaskDone(id) {
+        isTaskDone() {
             this.task.done === true
         }
     },
