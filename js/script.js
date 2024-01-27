@@ -21,6 +21,7 @@ const app = createApp ({
                 );
             
         }
+
     },
     methods: {
         // metodo per cancellare i singoli task 
@@ -49,10 +50,14 @@ const app = createApp ({
         },
 
         // metodo per cambiare tutti i valori del done all'occorrenza
-        setAllAsBoh() {
-            tasks.forEach (task => {
-                task.done = !task.done;
+        setAllAsBoh(status) {
+            this.tasks.forEach(task => {
+                task.done = status;
             })
+        },
+        // metodo per svuotare la lista
+        clearList() {
+            this.tasks = [];
         }
 
     
