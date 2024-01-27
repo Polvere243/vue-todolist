@@ -39,8 +39,8 @@
                         </div>
                         <button type="button" class="btn-close" aria-label="Close" v-on:click="deleteTask(task.id)"></button>
                     </li>
-                    <li v-show="!tasks.length" class="text-center list-group-item">
-                        <h5>Non ci sono Task</h5>
+                    <li v-show="!filteredTasks.length" class="text-center list-group-item">
+                        <h5>Non ci sono Task <span v-if="searchText">contenenti "{{ searchText }}"</span></h5>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <div class="container-fluid">
