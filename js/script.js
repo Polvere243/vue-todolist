@@ -9,16 +9,24 @@ const app = createApp ({
             { id: 3, done: false, text: 'Comprare una marca da bollo' },
             { id: 4, done: false, text: 'Aggiornare il PC' }
         ],
-        newTaskText: ""
+        newTaskText: "",
+        searchText:""
     }),
     computed: {
-        
+        // filtro per confrontare in tempo reale il testo nella barra di ricerca col valore degli elementi
+        filteredTasks() {
+            const searchTerm = this.searchText.toLowerCase();
+            return this.tasks.filter(task => 
+                task.text.toLowerCase().includes(searchTerm)
+                );
+            
+        }
     },
     methods: {
         // metodo per cancellare i singoli task 
         deleteTask(id) {
-           const filteredTasks = this.tasks.filter(task => id !== task.id)
-           this.tasks = filteredTasks;
+           const lessTasks = this.tasks.filter(task => id !== task.id)
+           this.tasks = lessTasks;
         },
         // metodo per creare un nuovo oggetto task e aggiungerlo all'array
         addNewTask() {
@@ -38,7 +46,13 @@ const app = createApp ({
                     task.done = !task.done;
                 } 
             });
+        },
 
+        // metodo per cambiare tutti i valori del done all'occorrenza
+        setAllAsBoh() {
+            tasks.forEach (task => {
+                task.done = !task.done;
+            })
         }
 
     
